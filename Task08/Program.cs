@@ -2,17 +2,24 @@
 // 5 -> 2, 4
 // 8 -> 2, 4, 6, 8
 
-Console.Write("Введите число: ");
+Console.Write("Введите положительное число: ");
 int num = Convert.ToInt32(Console.ReadLine());
 
-for (int i = 1; i <= num; i++)
+if (num < 0)
 {
-    if ((i == num || i == num - 1) && i % 2 == 0)
+    Console.WriteLine("Вы ввели отрицательное число!");
+}
+else
+{
+    for (int i = 1; i <= num; i++)
     {
-        Console.Write(i);
-    }
-    else
-    {
-        if (i % 2 == 0) Console.Write($"{i}, ");
+        if ((i == num || i == num - 1) && i % 2 == 0)
+        {
+            Console.Write(i);
+        }
+        else
+        {
+            if (i % 2 == 0) Console.Write($"{i}, ");
+        }
     }
 }
