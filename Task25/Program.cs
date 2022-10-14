@@ -5,42 +5,27 @@
 
 Console.Write("Введите число A: ");
 double basis = Convert.ToDouble(Console.ReadLine());
-Console.Write("Введите натуральное число B: ");
+Console.Write("Введите целое число B: ");
 double degree = Convert.ToDouble(Console.ReadLine());
 
 
-
-double result = Degree(basis, degree);
-Console.WriteLine("=======================================");
-Console.WriteLine($"Число {basis} в степени {degree} = {result}");
-
-
-double NaturalDegree(double bas, double deg)
+if ((Math.Abs(degree) % 2 != 0) && (Math.Abs(degree) % 2 != 1))   // проверка числа на дробность
 {
-    double result = 1;
-    for (int i = 1; i <= deg; i++)
-    {
-        result *= bas;
-    }
-    return result;
+    Console.WriteLine("Показатель степени должен быть целым числом!");
+}
+else
+{
+    double wholeDegree = WholeDegree(basis, degree);
+    Console.WriteLine($"Число {basis} в степени {degree} = {wholeDegree}");
 }
 
 
 
-double Degree(double bas, double deg)
+double WholeDegree(double bas, double deg)
 {
-    if (bas == 0) return 0;
-
     double result = 1;
 
-    // =================================================
-    if ((deg % 2 != 0) && (deg % 2 != 1))   // проверка числа на дробность
-    {
-        result = 1000000.0;
-        return result;
-    }
-    // =================================================
-
+    if (bas == 0) return 0;
     else
     {
         if (deg == 0) return result;
@@ -51,11 +36,21 @@ double Degree(double bas, double deg)
         }
         else if (deg < 0)
         {
-            deg *= -1;
-            result = 1 / NaturalDegree(bas, deg);
+            result = 1 / NaturalDegree(bas, Math.Abs(deg));
         }
-        else { Console.WriteLine("Число В должно быть целым числом!"); }
     }
 
+    return result;
+}
+
+
+
+double NaturalDegree(double bas, double deg)
+{
+    double result = 1;
+    for (int i = 1; i <= deg; i++)
+    {
+        result *= bas;
+    }
     return result;
 }
