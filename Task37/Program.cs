@@ -34,12 +34,11 @@ int[] MultiplePars(int[] array)
 {
     int newArrLength = array.Length / 2;
     if (array.Length % 2 == 1) newArrLength += 1;
-
     int[] newArray = new int[newArrLength];
 
     for (int i = 0; i < newArrLength; i++)
     {
-        newArray[i] = array[i] * array[array.Length - i - 1];
+        newArray[i] = array[i] * array[array.Length - 1 - i];
     }
 
     if (array.Length % 2 == 1)
@@ -51,7 +50,7 @@ int[] MultiplePars(int[] array)
 }
 
 
-int[] arrEven = CreateArrayRndInt(4, 1, 10);
+int[] arrEven = CreateArrayRndInt(6, 1, 10);
 int[] newArr1 = MultiplePars(arrEven);
 
 int[] arrOdd = CreateArrayRndInt(5, 1, 10);
