@@ -18,6 +18,21 @@ int[] Fibonacci(int num)
 }
 
 
+void Fibonacci2(int num)
+{
+    int firstNum = 0;
+    int secondNum = 1;
+    Console.Write($"{firstNum}, {secondNum}, ");
+    for (int i = 2; i < num; i++)
+    {
+        int currentNum = firstNum + secondNum;
+        Console.Write($"{currentNum}, ");
+        firstNum = secondNum;
+        secondNum = currentNum;
+    }
+}
+
+
 
 void PrintArray(int[] array)
 {
@@ -36,3 +51,5 @@ int number = Convert.ToInt32(Console.ReadLine());
 
 int[] fibonacci = Fibonacci(number);
 PrintArray(fibonacci);
+
+Fibonacci2(number);
