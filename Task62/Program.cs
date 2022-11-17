@@ -9,39 +9,34 @@ void PrintMatrix(int[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++) { Console.Write($"{matrix[i, j],3} "); }
+        for (int j = 0; j < matrix.GetLength(1); j++) { Console.Write($"{matrix[i, j],3}"); }
         Console.WriteLine();
     }
+    Console.WriteLine();
 }
 
 
 void SpiralMatrix(int[,] matrix, int num, int row, int col)
 {
-    // PrintMatrix(matrix);
-    // Console.WriteLine("-----------------");
-
+    int maxIndex = matrix.GetLength(1) - 1;
 
     if (matrix[row, col] == 0)
     {
         matrix[row, col] = num + 1;
         num = matrix[row, col];
 
-        if (col == matrix.GetLength(1) - 1) return;
-        SpiralMatrix(matrix, num, row, col + 1);
-
-        if (row == matrix.GetLength(0) - 1) return;
-        SpiralMatrix(matrix, num, row + 1, col);
-
-        if (col == 0) return;
-        SpiralMatrix(matrix, num, row, col - 1);
-
-        if (row == 0) return;
-        SpiralMatrix(matrix, num, row - 1, col);
+        if (col < maxIndex && row <= col + 1) SpiralMatrix(matrix, num, row, col + 1);
+        if (row < maxIndex && row < col) SpiralMatrix(matrix, num, row + 1, col);
+        if (col > 0) SpiralMatrix(matrix, num, row, col - 1);
+        if (row >= 0 && col < row) SpiralMatrix(matrix, num, row - 1, col);
     }
 }
 
-int size = 4;
+
+
+Console.Write("Введите размерность квадратной матрицы: ");
+int size = Convert.ToInt32(Console.ReadLine());
+
 int[,] spiralMatrix = new int[size, size];
 SpiralMatrix(spiralMatrix, 0, 0, 0);
-Console.WriteLine("=================");
 PrintMatrix(spiralMatrix);
